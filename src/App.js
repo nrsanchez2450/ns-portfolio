@@ -6,6 +6,7 @@ import lidar from "./assets/images/projects/LidarMapping.jpg"
 import PoliSupp from "./assets/images/projects/PoliSupp.jpg"
 import RecordGPT from "./assets/images/projects/RecordGPT.jpg"
 import SummaryGPT from "./assets/images/projects/SummaryGPT.jpg"
+import logo from "./assets/images/LOGO.svg"
 
 
 const Portfolio = () => {
@@ -80,7 +81,11 @@ const Portfolio = () => {
         }`}>
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold text-white">NS</div>
+            <div className="w-8 h-8"><img
+              className='w-8 h-8 object-cover'
+              src={logo}
+              style={{ minWidth: '32px', maxWidth: '32px', minHeight: '32px', maxHeight: '32px' }}
+            /></div>
             <div className="hidden md:flex space-x-8">
               {['home', 'about', 'experience', 'projects', 'contact'].map((section) => (
                 <button
