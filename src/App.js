@@ -8,7 +8,6 @@ import RecordGPT from "./assets/images/projects/RecordGPT.jpg"
 import SummaryGPT from "./assets/images/projects/SummaryGPT.jpg"
 import logo from "./assets/images/LOGO.svg"
 
-
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
@@ -75,26 +74,20 @@ const Portfolio = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="portfolio-container">
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-slate-900/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
-        }`}>
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <div className="w-8 h-8"><img
-              className='w-8 h-8 object-cover'
-              src={logo}
-              style={{ minWidth: '32px', maxWidth: '32px', minHeight: '32px', maxHeight: '32px' }}
-            /></div>
-            <div className="hidden md:flex space-x-8">
+      <nav className={`nav ${isScrolled ? 'scrolled' : ''}`}>
+        <div className="nav-content">
+          <div className="nav-inner">
+            <div>
+              <img className="logo" src={logo} alt="Logo" />
+            </div>
+            <div className="nav-links">
               {['home', 'about', 'experience', 'projects', 'contact'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className={`capitalize text-sm font-medium transition-colors ${activeSection === section
-                    ? 'text-purple-400'
-                    : 'text-gray-300 hover:text-white'
-                    }`}
+                  className={`nav-link ${activeSection === section ? 'active' : ''}`}
                 >
                   {section}
                 </button>
@@ -105,51 +98,46 @@ const Portfolio = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center px-6">
-        <div className="text-center max-w-4xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+      <section id="home" className="hero">
+        <div className="hero-content">
+          <div className="hero-text">
+            <h1 className="hero-title">
               Nathan Sanchez
             </h1>
-            <div className="text-xl md:text-2xl text-purple-300 mb-8">
+            <div className="hero-subtitle">
               Software Engineer & Full-Stack Developer
             </div>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-12">
+            <p className="hero-description">
               Passionate about developing innovative solutions and expanding expertise in modern technologies.
               Experienced in full-stack web development, robotics, and machine learning.
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <a href="mailto:nrsanchez2450@gmail.com"
-              className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors">
+          <div className="hero-buttons">
+            <a href="mailto:nrsanchez2450@gmail.com" className="btn btn-primary">
               <Mail size={20} />
               Contact Me
             </a>
-            <a href="https://linkedin.com/in/nathan-sanchez22/" target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-3 border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white rounded-lg transition-colors">
+            <a href="https://linkedin.com/in/nathan-sanchez22/" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
               <Linkedin size={20} />
               LinkedIn
             </a>
           </div>
 
-          <button
-            onClick={() => scrollToSection('about')}
-            className="animate-bounce text-purple-400 hover:text-white transition-colors"
-          >
+          <button onClick={() => scrollToSection('about')} className="scroll-indicator">
             <ChevronDown size={32} />
           </button>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center">About Me</h2>
+      <section id="about" className="section">
+        <div className="container">
+          <h2 className="section-title">About Me</h2>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-2">
             <div>
-              <div className="text-lg text-gray-300 space-y-6">
+              <div className="about-text">
                 <p>
                   I'm a motivated software engineer with a B.S. in Software Engineering from California Baptist University.
                   My passion lies in developing innovative solutions and continuously expanding my expertise in modern technologies.
@@ -163,11 +151,10 @@ const Portfolio = () => {
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Technologies & Skills</h3>
-              <div className="grid grid-cols-3 gap-3">
+              <h3 className="skills-title">Technologies & Skills</h3>
+              <div className="skills-grid">
                 {technologies.map((tech, index) => (
-                  <div key={index}
-                    className="bg-slate-800/50 backdrop-blur-sm px-3 py-2 rounded-lg text-center text-sm text-gray-300 border border-slate-700/50 hover:border-purple-400/50 transition-colors">
+                  <div key={index} className="skill-tag">
                     {tech}
                   </div>
                 ))}
@@ -178,68 +165,68 @@ const Portfolio = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 px-6 bg-slate-800/30">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center">Experience</h2>
+      <section id="experience" className="section section-alt">
+        <div className="container">
+          <h2 className="section-title">Experience</h2>
 
-          <div className="space-y-8">
+          <div className="experience-list">
             {/* Software Engineering Intern */}
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700/50">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+            <div className="experience-item">
+              <div className="experience-header">
                 <div>
-                  <h3 className="text-2xl font-bold text-white">Software Engineering Intern</h3>
-                  <div className="text-purple-400 font-semibold">OneTerrace | Tokyo, Japan</div>
+                  <h3 className="experience-title">Software Engineering Intern</h3>
+                  <div className="experience-company">OneTerrace | Tokyo, Japan</div>
                 </div>
-                <div className="flex items-center gap-2 text-gray-400 mt-2 md:mt-0">
+                <div className="experience-date">
                   <Calendar size={16} />
                   <span>May 2023 – July 2023</span>
                 </div>
               </div>
 
-              <ul className="space-y-3 text-gray-300">
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+              <ul className="experience-list-items">
+                <li>
+                  <div className="bullet-point"></div>
                   <span>Took ownership of a full-stack web application to manage client supporters, contributing across frontend and backend</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                <li>
+                  <div className="bullet-point"></div>
                   <span>Designed an intuitive React.js interface and implemented REST APIs with Express.js</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                <li>
+                  <div className="bullet-point"></div>
                   <span>Integrated MySQL database using Prisma ORM to streamline schema management</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                <li>
+                  <div className="bullet-point"></div>
                   <span>Deployed the application to an Ubuntu server using pm2, troubleshooting deployment independently</span>
                 </li>
               </ul>
             </div>
 
             {/* Academy Tutor */}
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700/50">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+            <div className="experience-item">
+              <div className="experience-header">
                 <div>
-                  <h3 className="text-2xl font-bold text-white">Academy Tutor</h3>
-                  <div className="text-purple-400 font-semibold">Ruby Drive Elementary | Placentia, CA</div>
+                  <h3 className="experience-title">Academy Tutor</h3>
+                  <div className="experience-company">Ruby Drive Elementary | Placentia, CA</div>
                 </div>
-                <div className="flex items-center gap-2 text-gray-400 mt-2 md:mt-0">
+                <div className="experience-date">
                   <Calendar size={16} />
                   <span>October 2024 – Present</span>
                 </div>
               </div>
 
-              <ul className="space-y-3 text-gray-300">
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+              <ul className="experience-list-items">
+                <li>
+                  <div className="bullet-point"></div>
                   <span>Managed a class of 26 fourth-grade students, offering individualized academic support</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                <li>
+                  <div className="bullet-point"></div>
                   <span>Collaborated with educators and administrators to reinforce classroom learning goals</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                <li>
+                  <div className="bullet-point"></div>
                   <span>Developed strong communication and leadership skills through daily engagement with students and staff</span>
                 </li>
               </ul>
@@ -249,39 +236,37 @@ const Portfolio = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center">Featured Projects</h2>
+      <section id="projects" className="section">
+        <div className="container">
+          <h2 className="section-title">Featured Projects</h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="projects-grid">
             {projects.map((project, index) => (
-              <div key={index} className={`bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700/50 hover:border-purple-400/50 transition-all duration-300 group ${projects.length % 2 !== 0 && index === projects.length - 1 ? 'md:col-span-2 md:max-w-2xl md:mx-auto' : ''}`}>
-                <div className="mb-4">
-                  <h3 className="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">{project.title}</h3>
-                  <div className="text-gray-400 text-sm mb-2">{project.location}</div>
-                  <div className="text-purple-400 text-sm">{project.period}</div>
+              <div key={index} className={`project-card ${projects.length % 2 !== 0 && index === projects.length - 1 ? 'full-width' : ''}`}>
+                <div>
+                  <h3 className="project-title">{project.title}</h3>
+                  <div className="project-location">{project.location}</div>
+                  <div className="project-period">{project.period}</div>
                 </div>
 
-                <p className="text-gray-300 mb-6">{project.description}</p>
+                <p className="project-description">{project.description}</p>
 
-                <ul className="space-y-2 mb-6">
+                <ul className="project-highlights">
                   {project.highlights.map((highlight, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-gray-300 text-sm">
-                      <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <li key={idx}>
+                      <div className="small-bullet"></div>
                       <span>{highlight}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="tech-tags">
                   {project.tech.map((tech, idx) => (
-                    <span key={idx} className="px-3 py-1 bg-purple-600/20 text-purple-300 rounded-full text-xs border border-purple-600/30">
+                    <span key={idx} className="tech-tag">
                       {tech}
                     </span>
                   ))}
                 </div>
-
-
               </div>
             ))}
           </div>
@@ -289,41 +274,41 @@ const Portfolio = () => {
       </section>
 
       {/* Education Section */}
-      <section className="py-20 px-6 bg-slate-800/30">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-white mb-12 text-center">Education</h2>
+      <section className="section section-alt">
+        <div className="container">
+          <h2 className="section-title">Education</h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700/50">
-              <div className="flex items-center gap-3 mb-4">
-                <GraduationCap className="text-purple-400" size={32} />
+          <div className="grid grid-cols-2">
+            <div className="education-card">
+              <div className="education-header">
+                <GraduationCap className="contact-icon" size={32} />
                 <div>
-                  <h3 className="text-2xl font-bold text-white">B.S. in Software Engineering</h3>
-                  <div className="text-purple-400">California Baptist University</div>
+                  <h3 className="education-title">B.S. in Software Engineering</h3>
+                  <div className="education-school">California Baptist University</div>
                 </div>
               </div>
-              <div className="text-gray-300">
-                <div className="mb-2">2020 – 2024</div>
+              <div className="education-details">
+                <div>2020 – 2024</div>
                 <div>GPA: 3.3</div>
               </div>
-              <div className="flex mt-5 items-center gap-2 text-purple-400">
+              <div className="award-section">
                 <Award size={20} />
-                <span className="font-semibold">Eagle Scout (February 2020)</span>
+                <span className="award-text">Eagle Scout (February 2020)</span>
               </div>
             </div>
 
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700/50">
-              <div className="flex items-center gap-3 mb-4">
-                <Code className="text-purple-400" size={32} />
+            <div className="education-card">
+              <div className="education-header">
+                <Code className="contact-icon" size={32} />
                 <div>
-                  <h3 className="text-2xl font-bold text-white">Machine Learning Specialization</h3>
-                  <div className="text-purple-400">Coursera/Stanford</div>
+                  <h3 className="education-title">Machine Learning Specialization</h3>
+                  <div className="education-school">Coursera/Stanford</div>
                 </div>
               </div>
-              <div className="text-gray-300 mb-4">
-                <div className="mb-2">Completed August 2025</div>
+              <div className="education-details">
+                <div>Completed August 2025</div>
               </div>
-              <ul className="space-y-1 text-sm text-gray-300">
+              <ul className="course-list">
                 <li>• Supervised Machine Learning: Regression and Classification</li>
                 <li>• Advanced Learning Algorithms</li>
                 <li>• Unsupervised Learning, Recommenders, Reinforcement Learning</li>
@@ -334,42 +319,39 @@ const Portfolio = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-white mb-12">Let's Connect</h2>
-          <p className="text-xl text-gray-300 mb-12">
+      <section id="contact" className="section">
+        <div className="container-small">
+          <h2 className="section-title">Let's Connect</h2>
+          <p className="contact-description">
             I'm always interested in new opportunities and collaborations.
             Let's discuss how we can work together!
           </p>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            <a href="mailto:nrsanchez2450@gmail.com"
-              className="flex flex-col items-center gap-4 p-6 bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-700/50 hover:border-purple-400/50 transition-all group">
-              <Mail className="text-purple-400 group-hover:scale-110 transition-transform" size={32} />
-              <div className="text-white font-semibold">Email</div>
-              <div className="text-gray-400 text-sm">nrsanchez2450@gmail.com</div>
+          <div className="contact-grid">
+            <a href="mailto:nrsanchez2450@gmail.com" className="contact-card">
+              <Mail className="contact-icon" size={32} />
+              <div className="contact-label">Email</div>
+              <div className="contact-value">nrsanchez2450@gmail.com</div>
             </a>
 
-            <a href="tel:+17142734010"
-              className="flex flex-col items-center gap-4 p-6 bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-700/50 hover:border-purple-400/50 transition-all group">
-              <Phone className="text-purple-400 group-hover:scale-110 transition-transform" size={32} />
-              <div className="text-white font-semibold">Phone</div>
-              <div className="text-gray-400 text-sm">(714) 273-4010</div>
+            <a href="tel:+17142734010" className="contact-card">
+              <Phone className="contact-icon" size={32} />
+              <div className="contact-label">Phone</div>
+              <div className="contact-value">(714) 273-4010</div>
             </a>
 
-            <a href="https://linkedin.com/in/nathan-sanchez22/" target="_blank" rel="noopener noreferrer"
-              className="flex flex-col items-center gap-4 p-6 bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-700/50 hover:border-purple-400/50 transition-all group">
-              <Linkedin className="text-purple-400 group-hover:scale-110 transition-transform" size={32} />
-              <div className="text-white font-semibold">LinkedIn</div>
-              <div className="text-gray-400 text-sm">Connect with me</div>
+            <a href="https://linkedin.com/in/nathan-sanchez22/" target="_blank" rel="noopener noreferrer" className="contact-card">
+              <Linkedin className="contact-icon" size={32} />
+              <div className="contact-label">LinkedIn</div>
+              <div className="contact-value">Connect with me</div>
             </a>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-6 border-t border-slate-700/50">
-        <div className="max-w-6xl mx-auto text-center text-gray-400">
+      <footer className="footer">
+        <div className="footer-content">
           <p>&copy; 2025 Nathan Sanchez. Built with React and passion.</p>
         </div>
       </footer>
