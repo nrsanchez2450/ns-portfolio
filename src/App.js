@@ -332,7 +332,6 @@ const Portfolio = () => {
       <section id="contact" className="py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-12">Let's Connect</h2>
-
           <p className="text-xl text-gray-300 mb-12">
             I'm always interested in new opportunities and collaborations.
             Let's discuss how we can work together!
